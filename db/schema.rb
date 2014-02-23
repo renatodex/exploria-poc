@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223023526) do
+ActiveRecord::Schema.define(version: 20140223041147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20140223023526) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "metaparams", force: true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.integer  "model_id"
+    t.string   "model_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "metaparams", ["model_id", "model_type"], name: "index_metaparams_on_model_id_and_model_type", using: :btree
 
   create_table "monster_instances", force: true do |t|
     t.integer  "monster_id"
@@ -96,6 +107,13 @@ ActiveRecord::Schema.define(version: 20140223023526) do
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "server_configs", force: true do |t|
+    t.integer  "encounter_rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
   end
 
 end
