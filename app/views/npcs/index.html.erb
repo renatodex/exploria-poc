@@ -1,0 +1,41 @@
+<h1>Listing npcs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hp</th>
+      <th>Level</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Fortitude</th>
+      <th>Class armor</th>
+      <th>Will</th>
+      <th>Reflex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @npcs.each do |npc| %>
+      <tr>
+        <td><%= npc.hp %></td>
+        <td><%= npc.level %></td>
+        <td><%= npc.name %></td>
+        <td><%= npc.image %></td>
+        <td><%= npc.fortitude %></td>
+        <td><%= npc.class_armor %></td>
+        <td><%= npc.will %></td>
+        <td><%= npc.reflex %></td>
+        <td><%= link_to 'Show', npc %></td>
+        <td><%= link_to 'Edit', edit_npc_path(npc) %></td>
+        <td><%= link_to 'Destroy', npc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Npc', new_npc_path %>

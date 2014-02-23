@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  npc_id: 
+  strength: 1
+  agility: 1
+  intelligence: 1
+  experience: 1
+
+two:
+  npc_id: 
+  strength: 1
+  agility: 1
+  intelligence: 1
+  experience: 1

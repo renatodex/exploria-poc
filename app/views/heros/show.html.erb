@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Npc:</strong>
+  <%= @hero.npc %>
+</p>
+
+<p>
+  <strong>Strength:</strong>
+  <%= @hero.strength %>
+</p>
+
+<p>
+  <strong>Agility:</strong>
+  <%= @hero.agility %>
+</p>
+
+<p>
+  <strong>Intelligence:</strong>
+  <%= @hero.intelligence %>
+</p>
+
+<p>
+  <strong>Experience:</strong>
+  <%= @hero.experience %>
+</p>
+
+<%= link_to 'Edit', edit_hero_path(@hero) %> |
+<%= link_to 'Back', heros_path %>

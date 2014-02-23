@@ -1,0 +1,25 @@
+<%= form_for(@monster_instance) do |f| %>
+  <% if @monster_instance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@monster_instance.errors.count, "error") %> prohibited this monster_instance from being saved:</h2>
+
+      <ul>
+      <% @monster_instance.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :monster_id %><br>
+    <%= f.text_field :monster_id %>
+  </div>
+  <div class="field">
+    <%= f.label :hp %><br>
+    <%= f.number_field :hp %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

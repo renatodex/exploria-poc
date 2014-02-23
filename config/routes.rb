@@ -1,4 +1,20 @@
 Exploria::Application.routes.draw do
+  resources :monster_instances
+
+  resources :monsters
+
+  resources :items
+
+  resources :heros
+
+  resources :npcs
+
+  resources :scene_nodes
+
+  resources :scene_actions
+
+  resources :scenes
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

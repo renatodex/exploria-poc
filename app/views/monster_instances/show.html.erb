@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Monster:</strong>
+  <%= @monster_instance.monster %>
+</p>
+
+<p>
+  <strong>Hp:</strong>
+  <%= @monster_instance.hp %>
+</p>
+
+<%= link_to 'Edit', edit_monster_instance_path(@monster_instance) %> |
+<%= link_to 'Back', monster_instances_path %>

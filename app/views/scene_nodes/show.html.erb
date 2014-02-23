@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Scene:</strong>
+  <%= @scene_node.scene %>
+</p>
+
+<p>
+  <strong>Neighbor scene:</strong>
+  <%= @scene_node.neighbor_scene_id %>
+</p>
+
+<%= link_to 'Edit', edit_scene_node_path(@scene_node) %> |
+<%= link_to 'Back', scene_nodes_path %>

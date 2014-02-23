@@ -1,0 +1,35 @@
+<h1>Listing heros</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Npc</th>
+      <th>Strength</th>
+      <th>Agility</th>
+      <th>Intelligence</th>
+      <th>Experience</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @heros.each do |hero| %>
+      <tr>
+        <td><%= hero.npc %></td>
+        <td><%= hero.strength %></td>
+        <td><%= hero.agility %></td>
+        <td><%= hero.intelligence %></td>
+        <td><%= hero.experience %></td>
+        <td><%= link_to 'Show', hero %></td>
+        <td><%= link_to 'Edit', edit_hero_path(hero) %></td>
+        <td><%= link_to 'Destroy', hero, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hero', new_hero_path %>

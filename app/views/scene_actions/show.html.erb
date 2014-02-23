@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @scene_action.name %>
+</p>
+
+<p>
+  <strong>Scene:</strong>
+  <%= @scene_action.scene %>
+</p>
+
+<p>
+  <strong>Scene callback:</strong>
+  <%= @scene_action.scene_callback_id %>
+</p>
+
+<%= link_to 'Edit', edit_scene_action_path(@scene_action) %> |
+<%= link_to 'Back', scene_actions_path %>

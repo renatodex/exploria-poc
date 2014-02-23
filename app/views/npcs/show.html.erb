@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hp:</strong>
+  <%= @npc.hp %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @npc.level %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @npc.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @npc.image %>
+</p>
+
+<p>
+  <strong>Fortitude:</strong>
+  <%= @npc.fortitude %>
+</p>
+
+<p>
+  <strong>Class armor:</strong>
+  <%= @npc.class_armor %>
+</p>
+
+<p>
+  <strong>Will:</strong>
+  <%= @npc.will %>
+</p>
+
+<p>
+  <strong>Reflex:</strong>
+  <%= @npc.reflex %>
+</p>
+
+<%= link_to 'Edit', edit_npc_path(@npc) %> |
+<%= link_to 'Back', npcs_path %>

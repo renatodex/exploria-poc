@@ -1,0 +1,29 @@
+<h1>Listing monster_instances</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Monster</th>
+      <th>Hp</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @monster_instances.each do |monster_instance| %>
+      <tr>
+        <td><%= monster_instance.monster %></td>
+        <td><%= monster_instance.hp %></td>
+        <td><%= link_to 'Show', monster_instance %></td>
+        <td><%= link_to 'Edit', edit_monster_instance_path(monster_instance) %></td>
+        <td><%= link_to 'Destroy', monster_instance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Monster instance', new_monster_instance_path %>

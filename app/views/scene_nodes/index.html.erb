@@ -1,0 +1,29 @@
+<h1>Listing scene_nodes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scene</th>
+      <th>Neighbor scene</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scene_nodes.each do |scene_node| %>
+      <tr>
+        <td><%= scene_node.scene %></td>
+        <td><%= scene_node.neighbor_scene_id %></td>
+        <td><%= link_to 'Show', scene_node %></td>
+        <td><%= link_to 'Edit', edit_scene_node_path(scene_node) %></td>
+        <td><%= link_to 'Destroy', scene_node, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scene node', new_scene_node_path %>
