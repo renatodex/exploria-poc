@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223060623) do
+ActiveRecord::Schema.define(version: 20140223223401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,9 +38,6 @@ ActiveRecord::Schema.define(version: 20140223060623) do
 
   create_table "heros", force: true do |t|
     t.integer  "npc_id"
-    t.integer  "strength"
-    t.integer  "agility"
-    t.integer  "intelligence"
     t.integer  "experience"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -97,12 +94,11 @@ ActiveRecord::Schema.define(version: 20140223060623) do
     t.integer  "level"
     t.string   "name"
     t.string   "image"
-    t.integer  "fortitude"
-    t.integer  "class_armor"
-    t.integer  "will"
-    t.integer  "reflex"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "strength"
+    t.integer  "intelligence"
+    t.integer  "agility"
   end
 
   create_table "scene_actions", force: true do |t|
