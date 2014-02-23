@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :scene_id %><br>
-    <%= f.text_field :scene_id %>
+	<%= select_tag "scene_action[scene_id]", options_for_select(@scenes_array)%><br>
   </div>
   <div class="field">
     <%= f.label :scene_callback_id %><br>
-    <%= f.number_field :scene_callback_id %>
+	<%= select_tag "scene_action[scene_callback_id]", options_for_select(@scenes_array)%><br>
   </div>
   <div class="actions">
     <%= f.submit %>

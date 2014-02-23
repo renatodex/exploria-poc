@@ -1,0 +1,24 @@
+<h2>Você está em: <%= @logged_data.scene.name %></h2>
+
+<section class="scene-details">
+	<%= image_tag @logged_data.scene.image, :width => "100%"%>
+	
+	<h3><%= @logged_data.scene.description %></h3>
+</section>
+
+<section class="hero-details">
+	<h1>Olá <%= @logged_data.npc.name %></h1>
+	<h2>Level: <%= @logged_data.npc.level %></h2>
+	<h2>HP: <%= @logged_data.npc.hp %></h2>
+	<%= image_tag @logged_data.npc.image, :width => "200px", :class => 'hero-avatar' %>
+</section>
+
+<section class="scene-actions">
+	<h2>E ai, o que você faz?</h2>
+	
+	<ul>
+		<% @scene_actions.each do |s| %>
+			<li><a href="<%= take_action_path(s[0]) %>"><%= s[1] %></a></li>
+		<% end %>
+	</ul>
+</section>

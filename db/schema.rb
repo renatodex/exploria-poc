@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223013252) do
+ActiveRecord::Schema.define(version: 20140223023526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,11 @@ ActiveRecord::Schema.define(version: 20140223013252) do
     t.integer  "experience"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "scene_id"
   end
 
   add_index "heros", ["npc_id"], name: "index_heros_on_npc_id", using: :btree
+  add_index "heros", ["scene_id"], name: "index_heros_on_scene_id", using: :btree
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -90,7 +92,7 @@ ActiveRecord::Schema.define(version: 20140223013252) do
 
   create_table "scenes", force: true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"

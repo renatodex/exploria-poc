@@ -15,6 +15,7 @@ class SceneActionsController < ApplicationController
   # GET /scene_actions/new
   def new
     @scene_action = SceneAction.new
+		@scenes_array = Scene.all.collect { |s| [ s.name, s.id ] }
   end
 
   # GET /scene_actions/1/edit
