@@ -7,30 +7,17 @@ class GameController < ApplicationController
   end
 
 	def battle_scene
-		@selected_monster = @logged_data.last_pending_monster.monster
+		@selected_monster = @logged_data.last_pending_monster
 		@battle_actions = @logged_data.npc.battle_action
 	rescue
 		redirect_to scene_path
 	end
 	
 	def battle_physical_attack
-		monster = @logged_data.last_pending_monster.monster
+		monster_instance = @logged_data.last_pending_monster
 		
-		# SUA VEZ
-		attack_result = Dice.d20 + @logged_data.physical_modifier 
-		if attack_result > monster.npc.class_armor
-			# o dado jogado no dano depende da arma que o heroi está usando
-			attack_damage = Dice.d6 + @logged_data.physical_modifier	
-			Rails.logger.info "[battle] #{@logged_data.npc.name} acertou um ataque fisico contra #{monster.npc.name} e causou #{attack_damage} de dano!!"
-		else
-			Rails.logger.info "[battle] #{@logged_data.npc.name} errou um ataque contra #{monster.npc.name}"
-		end
-		
-		# VEZ DO BICHO
-		
-		attack_result = Dice.d20 + monster
-		
-		
+		proccess_attack(@logged_data, monster_instance)
+		proccess_attack(monster_instance, @logged_data)
 		
 		redirect_to battle_scene_path
 	end
@@ -55,5 +42,19 @@ class GameController < ApplicationController
 	private
 	def encounter?
 		Dice.d100 < @server_config.encounter_rate
+	end
+	
+	def proccess_attack(source, target)
+		attack_result = Dice.d20 + source.npc.physical_modifier
+		if attack_result > target.npc.class_armor
+			attack_damage = Dice.d6 + source.npc.physical_modifier		
+			
+			target.apply_damage(attack_damage)
+			target.save
+			
+			Rails.logger.info "[battle] #{source.npc.name} acertou um ataque fisico contra #{target.npc.name} e causou #{attack_damage} de dano!!"
+		else
+			Rails.logger.info "[battle] #{source.npc.name} errou um ataque contra #{target.npc.name}"
+		end
 	end
 end

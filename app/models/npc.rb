@@ -19,4 +19,12 @@ class Npc < ActiveRecord::Base
 	def class_armor
 		fortitude
 	end	
+	
+	def physical_modifier
+		self.level + Modifier.calculate(self.strength)
+	end
+	
+	def magical_modifier
+		self.level + Modifier.calculate(self.intelligence)
+	end
 end

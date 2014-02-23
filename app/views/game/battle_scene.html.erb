@@ -4,12 +4,13 @@
 	<%= image_tag @selected_monster.npc.image, :width => "100%"%>
 	
 	<h3><%= @selected_monster.npc.name %></h3>
+	<h3>HP: <%= @selected_monster.hp %></h3>
 </section>
 
 <section class="hero-details">
 	<h1>Olá <%= @logged_data.npc.name %></h1>
 	<h2>Level: <%= @logged_data.npc.level %></h2>
-	<h2>HP: <%= @logged_data.npc.hp %></h2>
+	<h2>HP: <%= @logged_data.hp %></h2>
 	<%= image_tag @logged_data.npc.image, :width => "200px", :class => 'hero-avatar' %>
 </section>
 
