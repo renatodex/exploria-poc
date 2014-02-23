@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 	def layout_vars
 		session[:user_id] = 1
 		@logged_data = logged_data
+		@server_config = ServerConfig.find_by_name('meteora')
 	end
 	
 	def logged_data

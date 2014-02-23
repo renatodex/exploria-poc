@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223041147) do
+ActiveRecord::Schema.define(version: 20140223042326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(version: 20140223041147) do
   end
 
   add_index "scene_actions", ["scene_id"], name: "index_scene_actions_on_scene_id", using: :btree
+
+  create_table "scene_monsters", force: true do |t|
+    t.integer  "scene_id"
+    t.integer  "monster_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "scene_monsters", ["monster_id"], name: "index_scene_monsters_on_monster_id", using: :btree
+  add_index "scene_monsters", ["scene_id"], name: "index_scene_monsters_on_scene_id", using: :btree
 
   create_table "scene_nodes", force: true do |t|
     t.integer  "scene_id"
