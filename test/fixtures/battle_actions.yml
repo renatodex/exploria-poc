@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  npc_id: 
+  name: MyString
+  base_attack: 1
+  base_damage: 1
+  attack_type_id: 
+  image: MyString
+
+two:
+  npc_id: 
+  name: MyString
+  base_attack: 1
+  base_damage: 1
+  attack_type_id: 
+  image: MyString

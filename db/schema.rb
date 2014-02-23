@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223042326) do
+ActiveRecord::Schema.define(version: 20140223060623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attack_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "battle_actions", force: true do |t|
+    t.integer  "npc_id"
+    t.string   "name"
+    t.integer  "base_attack"
+    t.integer  "base_damage"
+    t.integer  "attack_type_id"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "battle_actions", ["attack_type_id"], name: "index_battle_actions_on_attack_type_id", using: :btree
+  add_index "battle_actions", ["npc_id"], name: "index_battle_actions_on_npc_id", using: :btree
 
   create_table "heros", force: true do |t|
     t.integer  "npc_id"
@@ -57,8 +77,11 @@ ActiveRecord::Schema.define(version: 20140223042326) do
     t.integer  "hp"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "hero_id"
+    t.datetime "killed_at"
   end
 
+  add_index "monster_instances", ["hero_id"], name: "index_monster_instances_on_hero_id", using: :btree
   add_index "monster_instances", ["monster_id"], name: "index_monster_instances_on_monster_id", using: :btree
 
   create_table "monsters", force: true do |t|

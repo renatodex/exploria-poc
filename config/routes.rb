@@ -1,6 +1,7 @@
 Exploria::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   get "game/scene" => "game#scene", :as => "scene"
+	get "game/battle_scene" => "game#battle_scene", :as => "battle_scene"
 	get "game/take_action/:action_id" => "game#take_action", :as => "take_action"
 
   resources :monster_instances
