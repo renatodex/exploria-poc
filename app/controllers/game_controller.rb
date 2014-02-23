@@ -8,6 +8,7 @@ class GameController < ApplicationController
 
 	def battle_scene
 		@selected_monster = @logged_data.last_pending_monster.monster
+		@battle_actions = @logged_data.npc.battle_action
 	rescue
 		redirect_to scene_path
 	end

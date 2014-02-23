@@ -15,8 +15,15 @@
 
 <section class="scene-actions">
 	<h2>E ai, o que você faz?</h2>
-		
 	<ul>
+		<li></li>
+		<li></li>
+		<% @battle_actions.each do |ba| %>
+			<li>
+				<%= ba.name %>			
+				<%= image_tag ba.image, :width => "50px" %>
+			</li>
+		<% end %>
 	</ul>
 </section>
 
