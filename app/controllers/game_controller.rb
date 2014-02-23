@@ -12,8 +12,33 @@ class GameController < ApplicationController
 	rescue
 		redirect_to scene_path
 	end
+	
+	def battle_physical_attack
+		monster = @logged_data.last_pending_monster.monster
+		
+		# SUA VEZ
+		attack_result = Dice.d20 + @logged_data.physical_modifier 
+		if attack_result > monster.npc.class_armor
+			# o dado jogado no dano depende da arma que o heroi está usando
+			attack_damage = Dice.d6 + @logged_data.physical_modifier	
+			Rails.logger.info "[battle] #{@logged_data.npc.name} acertou um ataque fisico contra #{monster.npc.name} e causou #{attack_damage} de dano!!"
+		else
+			Rails.logger.info "[battle] #{@logged_data.npc.name} errou um ataque contra #{monster.npc.name}"
+		end
+		
+		# VEZ DO BICHO
+		
+		
+		
+		
+		
+		redirect_to battle_scene_path
+	end
+	
+	def battle_run
+	end
 
-	def take_action		
+	def take_action
 		if encounter?
 			scene_monsters = @logged_data.scene.scene_monster
 			selected_monster = scene_monsters[rand(scene_monsters.count)]
@@ -29,6 +54,6 @@ class GameController < ApplicationController
 	
 	private
 	def encounter?
-		rand(100) < @server_config.encounter_rate
+		Dice.d100 < @server_config.encounter_rate
 	end
 end

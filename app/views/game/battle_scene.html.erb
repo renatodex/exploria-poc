@@ -16,14 +16,22 @@
 <section class="scene-actions">
 	<h2>E ai, o que você faz?</h2>
 	<ul>
-		<li></li>
-		<li></li>
-		<% @battle_actions.each do |ba| %>
-			<li>
-				<%= ba.name %>			
-				<%= image_tag ba.image, :width => "50px" %>
-			</li>
-		<% end %>
+		<li>
+			<a href="<%= battle_physical_attack_path %>">
+				<h3>Atacar</h3>
+				<%= image_tag "/assets/battle-attack.png", :width => "50px" %>
+			</a>
+		</li>
+		<li>
+			<a href="">
+				<h3>Fugir</h3>
+				<%= image_tag "/assets/battle-escape.png", :width => "50px" %>
+			</a>
+		</li>
+		<% #@battle_actions.each do |ba| %>
+				<%#= ba.name %>			
+				<%#= image_tag ba.image, :width => "50px" %>
+		<% #end %>
 	</ul>
 </section>
 

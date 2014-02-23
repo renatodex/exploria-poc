@@ -13,11 +13,11 @@ class Hero < ActiveRecord::Base
 		self.monster_instance.count > 0 && self.monster_instance.first.try(:killed_at) == nil
 	end
 	
-	def physical_damage
+	def physical_modifier
 		self.npc.level + Modifier.calculate(self.strength)
 	end
 	
-	def magical_damage
+	def magical_modifier
 		self.npc.level + Modifier.calculate(self.intelligence)
 	end
 end
