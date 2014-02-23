@@ -28,7 +28,7 @@ class GameController < ApplicationController
 		
 		# VEZ DO BICHO
 		
-		
+		attack_result = Dice.d20 + monster
 		
 		
 		
