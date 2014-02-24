@@ -60,3 +60,25 @@ h1, h2 {
     }
   }
 }
+
+
+.game-over {
+  margin-top:40px;
+  text-align:center;
+  
+  .classic {
+    color:#fff;
+    font-size:100px;
+    line-height:100px;
+    margin-bottom:50px;
+  }
+  
+  h2 {
+    margin-top:80px;
+  }
+  
+  h2, h3 {
+    color:#fff;
+    margin-bottom:20px;
+  }
+}

@@ -7,19 +7,39 @@ class GameController < ApplicationController
   end
 
 	def battle_scene
-		@selected_monster = @logged_data.last_pending_monster
-		@battle_actions = @logged_data.npc.battle_action
+		if @logged_data.has_pending_monster?
+			@selected_monster = @logged_data.last_pending_monster
+			@battle_actions = @logged_data.npc.battle_action
+		else
+			redirect_to scene_path
+		end
 	rescue
 		redirect_to scene_path
 	end
 	
+	def battle_victory
+		redirect_to scene_path
+	end
+	
+	def battle_gameover
+	end
+	
 	def battle_physical_attack
-		monster_instance = @logged_data.last_pending_monster
+		if @logged_data.has_pending_monster?
+			monster_instance = @logged_data.last_pending_monster
+			proccess_attack(@logged_data, monster_instance)
+			proccess_attack(monster_instance, @logged_data)
 		
-		proccess_attack(@logged_data, monster_instance)
-		proccess_attack(monster_instance, @logged_data)
-		
-		redirect_to battle_scene_path
+			if monster_instance.hp == 0
+				redirect_to battle_victory_path
+			elsif @logged_data.hp == 0
+				redirect_to battle_gameover_path
+			else
+				redirect_to battle_scene_path
+			end
+		else
+			redirect_to scene_path
+		end
 	end
 	
 	def battle_run
@@ -51,7 +71,7 @@ class GameController < ApplicationController
 			
 			target.apply_damage(attack_damage)
 			target.save
-			
+						
 			Rails.logger.info "[battle] #{source.npc.name} acertou um ataque fisico contra #{target.npc.name} e causou #{attack_damage} de dano!!"
 		else
 			Rails.logger.info "[battle] #{source.npc.name} errou um ataque contra #{target.npc.name}"

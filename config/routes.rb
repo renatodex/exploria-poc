@@ -4,6 +4,8 @@ Exploria::Application.routes.draw do
 	get "game/battle_scene" => "game#battle_scene", :as => "battle_scene"
 	get "game/take_action/:action_id" => "game#take_action", :as => "take_action"
 	get "game/battle/actions/physical-attack" => "game#battle_physical_attack", :as => "battle_physical_attack"
+	get "game/battle/gameover" => "game#battle_gameover", :as => "battle_gameover"
+	get "game/battle/victory" => "game#battle_victory", :as => "battle_victory"
 
   resources :monster_instances
 

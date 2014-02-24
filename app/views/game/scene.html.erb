@@ -9,7 +9,7 @@
 <section class="hero-details">
 	<h1>Olá <%= @logged_data.npc.name %></h1>
 	<h2>Level: <%= @logged_data.npc.level %></h2>
-	<h2>HP: <%= @logged_data.npc.hp %></h2>
+	<h2>HP: <%= @logged_data.hp %></h2>
 	<%= image_tag @logged_data.npc.image, :width => "200px", :class => 'hero-avatar' %>
 </section>
 
@@ -22,3 +22,5 @@
 		<% end %>
 	</ul>
 </section>
+
+<%= audio_tag("barg-forest.mp3", autoplay: true) %>

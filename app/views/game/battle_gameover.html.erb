@@ -1,0 +1,16 @@
+<section class="game-over">
+	<h1 class="classic">GAME OVER</h1>
+
+	<h2>Descanse em paz, <%= @logged_data.npc.name %></h2>
+	<%= image_tag @logged_data.npc.image, :width => "200px", :class => 'hero-avatar' %>
+	
+	<h3>#saudades</h3>
+</section>
+
+<%= audio_tag("battle-gameover.mp3", autoplay: true) %>
+
+<style>
+	body {
+		background-color:#000;
+	}
+</style>

@@ -10,7 +10,7 @@ class Hero < ActiveRecord::Base
 	end
 	
 	def has_pending_monster?
-		self.monster_instance.count > 0 && self.monster_instance.first.try(:killed_at) == nil
+		self.monster_instance.count > 0 && self.monster_instance.where("killed_at IS NULL").count > 0
 	end
 	
 	def apply_damage(value)
