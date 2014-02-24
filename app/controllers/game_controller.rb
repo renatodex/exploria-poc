@@ -30,10 +30,10 @@ class GameController < ApplicationController
 			proccess_attack(@logged_data, monster_instance)
 			proccess_attack(monster_instance, @logged_data)
 		
-			if monster_instance.hp == 0
-				redirect_to battle_victory_path
-			elsif @logged_data.hp == 0
+			if @logged_data.hp == 0
 				redirect_to battle_gameover_path
+			elsif monster_instance.hp == 0
+				redirect_to battle_victory_path
 			else
 				redirect_to battle_scene_path
 			end
