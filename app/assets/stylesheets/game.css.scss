@@ -14,6 +14,29 @@ h1, h2 {
   }
 }
 
+.enemy-hp {
+  border:1px solid #ccc;
+  height:30px;
+  width:100%;
+  
+  .actual-hp {
+    width:80%;
+    height:30px;
+  }
+  
+  .hp-urgency-good {
+    background-color:#81BD75;
+  }
+  
+  .hp-urgency-average {
+    background-color:#E19235;
+  }
+  
+  .hp-urgency-critical {
+    background-color:#CA2747;
+  }
+}
+
 .scene-details {
   margin:0 auto;
   width:500px;

@@ -5,6 +5,9 @@
 	
 	<h3><%= @selected_monster.npc.name %></h3>
 	<h3>HP: <%= @selected_monster.hp %></h3>
+	<div class="enemy-hp">
+		<div class="actual-hp hp-urgency-<%= @selected_monster.hp_urgency %>" style="width:<%=@selected_monster.hp_percentage%>%"></div>
+	</div>
 </section>
 
 <section class="hero-details">
