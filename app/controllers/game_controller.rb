@@ -48,9 +48,13 @@ class GameController < ApplicationController
 	def take_action
 		if encounter?
 			scene_monsters = @logged_data.scene.scene_monster
-			selected_monster = scene_monsters[rand(scene_monsters.count)]
-			MonsterInstance.create(:monster => selected_monster.monster, :hp => selected_monster.monster.npc.hp, :hero => @logged_data)
-			redirect_to battle_scene_path
+			if scene_monsters.count > 0
+				selected_monster = scene_monsters[rand(scene_monsters.count)]
+				MonsterInstance.create(:monster => selected_monster.monster, :hp => selected_monster.monster.npc.hp, :hero => @logged_data)
+				redirect_to battle_scene_path
+			else
+				redirect_to scene_path
+			end
 		else
 			scene_action = SceneAction.find_by_id(params[:action_id])
 			@logged_data.scene = scene_action.callback_scene

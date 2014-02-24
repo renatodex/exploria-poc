@@ -19,6 +19,6 @@ class Modifier
 			16 => 6
 		}
 		
-		bonus[value]
+		((BigDecimal(value)/BigDecimal(2)).ceil - BigDecimal(2)).to_i
 	end
 end

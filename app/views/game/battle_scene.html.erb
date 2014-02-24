@@ -4,8 +4,7 @@
 	<%= image_tag @selected_monster.npc.image, :width => "100%"%>
 	
 	<h3><%= @selected_monster.npc.name %></h3>
-	<h3>HP: <%= @selected_monster.hp %></h3>
-	<div class="enemy-hp">
+	<div class="npc-hp">
 		<div class="actual-hp hp-urgency-<%= @selected_monster.hp_urgency %>" style="width:<%=@selected_monster.hp_percentage%>%"></div>
 	</div>
 </section>
@@ -13,7 +12,12 @@
 <section class="hero-details">
 	<h1>Olá <%= @logged_data.npc.name %></h1>
 	<h2>Level: <%= @logged_data.npc.level %></h2>
-	<h2>HP: <%= @logged_data.hp %></h2>
+	<div class="npc-hp">
+		<div class="hp-number">HP: <%= @logged_data.hp %></div>
+		<div class="actual-hp hp-urgency-<%= @logged_data.hp_urgency %>" style="width:<%=@logged_data.hp_percentage%>%">
+		</div>
+	</div>
+	
 	<%= image_tag @logged_data.npc.image, :width => "200px", :class => 'hero-avatar' %>
 </section>
 
