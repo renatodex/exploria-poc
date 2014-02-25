@@ -6,6 +6,15 @@ class GameController < ApplicationController
 		@scene_actions = logged_data.scene.scene_action.collect { |sa| [sa.id, sa.name]}
   end
 
+	def use_item
+		hero_item = HeroItem.find_by_id(params[:hero_item_id])
+		if hero_item.item.usable
+			hero_item.use_item
+		end
+		
+		redirect_to scene_path
+	end
+
 	def battle_scene
 		if @logged_data.has_pending_monster?
 			@selected_monster = @logged_data.last_pending_monster

@@ -14,6 +14,29 @@ h1, h2 {
   }
 }
 
+.hero-items {
+  ul {
+    list-style:none;
+    margin:0px;
+    padding:0px;
+    
+    li {
+      padding:1px;
+      background-color:#ccc;
+
+      a {
+        display:block;
+        padding:10px;
+        
+        &:hover {
+          background-color:#fff;
+          color:#000;
+        }
+      }
+    }
+  }
+}
+
 .npc-hp {
   border:1px solid #ccc;
   height:30px;

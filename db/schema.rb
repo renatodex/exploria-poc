@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223223535) do
+ActiveRecord::Schema.define(version: 20140225030225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,19 @@ ActiveRecord::Schema.define(version: 20140223223535) do
   add_index "battle_actions", ["attack_type_id"], name: "index_battle_actions_on_attack_type_id", using: :btree
   add_index "battle_actions", ["npc_id"], name: "index_battle_actions_on_npc_id", using: :btree
 
+  create_table "hero_items", force: true do |t|
+    t.integer  "hero_id"
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.datetime "used_at"
+    t.boolean  "equiped"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hero_items", ["hero_id"], name: "index_hero_items_on_hero_id", using: :btree
+  add_index "hero_items", ["item_id"], name: "index_hero_items_on_item_id", using: :btree
+
   create_table "heros", force: true do |t|
     t.integer  "npc_id"
     t.integer  "experience"
@@ -48,6 +61,12 @@ ActiveRecord::Schema.define(version: 20140223223535) do
   add_index "heros", ["npc_id"], name: "index_heros_on_npc_id", using: :btree
   add_index "heros", ["scene_id"], name: "index_heros_on_scene_id", using: :btree
 
+  create_table "item_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "items", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -57,7 +76,13 @@ ActiveRecord::Schema.define(version: 20140223223535) do
     t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "item_type_id"
+    t.integer  "item_value"
+    t.boolean  "equipable"
+    t.boolean  "usable"
   end
+
+  add_index "items", ["item_type_id"], name: "index_items_on_item_type_id", using: :btree
 
   create_table "metaparams", force: true do |t|
     t.string   "name"

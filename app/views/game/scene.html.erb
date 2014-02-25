@@ -17,6 +17,19 @@
 	</div>
 
 	<%= image_tag @logged_data.npc.image, :width => "200px", :class => 'hero-avatar' %>
+	
+	<div class="hero-items">
+		<h2>Meus itens</h2>
+		<ul>
+			<% @logged_data.items.each do |hero_item| %>
+				<li>
+					<a href="<%= use_item_path(hero_item.id)%>"><%= image_tag hero_item.item.image, :width => "50px"%>
+						<span><%= hero_item.item.name %></span>
+					</a>
+				</li>
+			<% end %>
+		</ul>
+	</div>
 </section>
 
 <section class="scene-actions">
