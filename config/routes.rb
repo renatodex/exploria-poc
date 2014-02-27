@@ -8,6 +8,8 @@ Exploria::Application.routes.draw do
 	get "game/battle/victory" => "game#battle_victory", :as => "battle_victory"
 	get "game/actions/use_item/:hero_item_id" => "game#use_item", :as => "use_item"
 
+	mount HeroAPI => '/'
+
   resources :monster_instances
 
   resources :monsters
