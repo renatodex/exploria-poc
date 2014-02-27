@@ -22,6 +22,9 @@ group :development do
 	gem 'rails_admin'
 end
 
+
+gem 'grape'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 

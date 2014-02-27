@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225040947) do
+ActiveRecord::Schema.define(version: 20140226000208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: true do |t|
+    t.string   "login"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "attack_types", force: true do |t|
     t.string   "name"
@@ -55,8 +62,10 @@ ActiveRecord::Schema.define(version: 20140225040947) do
     t.datetime "updated_at"
     t.integer  "scene_id"
     t.integer  "hp"
+    t.integer  "account_id"
   end
 
+  add_index "heros", ["account_id"], name: "index_heros_on_account_id", using: :btree
   add_index "heros", ["npc_id"], name: "index_heros_on_npc_id", using: :btree
   add_index "heros", ["scene_id"], name: "index_heros_on_scene_id", using: :btree
 

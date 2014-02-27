@@ -1,11 +1,13 @@
 class Hero < ActiveRecord::Base
   belongs_to :npc
 	belongs_to :scene
+	belongs_to :account
 	
 	has_many :metaparam, as: :model
 	has_many :monster_instance
 	has_many :hero_item
 	has_many :item, through: :hero_item
+	
 	
 	def last_pending_monster
 		self.monster_instance.where("killed_at IS NULL").first
