@@ -53,4 +53,29 @@ class Hero < ActiveRecord::Base
 			self.hp = actual_hp+hp
 		end
 	end
+	
+	def full_heal
+		self.heal(self.npc.hp)
+	end
+	
+	def level_up
+		self.npc.level += 1
+		self.npc.hp = self.npc.max_hp
+		self.full_heal
+		self.npc.save
+	end
+	
+	def receive_xp(value)
+		Rails.logger.info "[hero experience] the Hero #{self.npc.name} is receiving #{value}XP!!"
+		exp = Experience.find_by_level(self.npc.level)
+		
+		if self.experience+value >= exp.value
+			self.experience = 0
+			self.level_up
+		else
+			self.experience += value
+		end
+		
+		self.save
+	end
 end

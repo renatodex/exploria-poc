@@ -1,7 +1,9 @@
 <h2>Você está em: <%= @logged_data.scene.name %></h2>
 
 <section class="scene-details">
-	<%= image_tag @logged_data.scene.image, :width => "100%"%>
+	<div class="scene-image">
+		<%= image_tag @logged_data.scene.image, :width => "100%"%>
+	</div>
 	
 	<h3><%= @logged_data.scene.description %></h3>
 </section>
@@ -11,12 +13,15 @@
 	<h2>Level: <%= @logged_data.npc.level %></h2>
 
 	<div class="npc-hp">
-		<div class="hp-number">HP: <%= @logged_data.hp %></div>
-		<div class="actual-hp hp-urgency-<%= @logged_data.hp_urgency %>" style="width:<%=@logged_data.hp_percentage%>%">
-		</div>
+		<div class="hp-number">HP: <%= @logged_data.hp %> / <%= @logged_data.npc.hp %></div>
+		<div class="actual-hp hp-urgency-<%= @logged_data.hp_urgency %>" style="width:<%=@logged_data.hp_percentage%>%">		</div>
 	</div>
 
 	<%= image_tag @logged_data.npc.image, :width => "200px", :class => 'hero-avatar' %>
+	
+	<div class="hero-experience">
+		<h2>Exp: <%= @logged_data.experience %>/<%= @max_xp_for_level %></h2>
+	</div>
 	
 	<div class="hero-items">
 		<h2>Meus itens</h2>

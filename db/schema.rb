@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227221541) do
+ActiveRecord::Schema.define(version: 20140228035747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,17 @@ ActiveRecord::Schema.define(version: 20140227221541) do
   add_index "monster_instances", ["hero_id"], name: "index_monster_instances_on_hero_id", using: :btree
   add_index "monster_instances", ["monster_id"], name: "index_monster_instances_on_monster_id", using: :btree
 
+  create_table "monster_loots", force: true do |t|
+    t.integer  "monster_id"
+    t.integer  "item_id"
+    t.float    "rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "monster_loots", ["item_id"], name: "index_monster_loots_on_item_id", using: :btree
+  add_index "monster_loots", ["monster_id"], name: "index_monster_loots_on_monster_id", using: :btree
+
   create_table "monsters", force: true do |t|
     t.integer  "npc_id"
     t.datetime "created_at"
@@ -182,10 +193,11 @@ ActiveRecord::Schema.define(version: 20140227221541) do
   end
 
   create_table "server_configs", force: true do |t|
-    t.integer  "encounter_rate"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
+    t.string   "server"
+    t.string   "key"
+    t.integer  "value"
   end
 
 end

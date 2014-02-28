@@ -4,6 +4,7 @@ class GameController < ApplicationController
   def scene
 		redirect_to battle_scene_path if @logged_data.has_pending_monster?
 		@scene_actions = logged_data.scene.scene_action.collect { |sa| [sa.id, sa.name]}
+		@max_xp_for_level = Experience.find_by_level(@logged_data.npc.level).value
   end
 
 	def use_item
@@ -19,6 +20,7 @@ class GameController < ApplicationController
 		if @logged_data.has_pending_monster?
 			@selected_monster = @logged_data.last_pending_monster
 			@battle_actions = @logged_data.npc.battle_action
+			@max_xp_for_level = Experience.find_by_level(@logged_data.npc.level).value
 		else
 			redirect_to scene_path
 		end
@@ -42,6 +44,9 @@ class GameController < ApplicationController
 			if @logged_data.hp == 0
 				redirect_to battle_gameover_path
 			elsif monster_instance.hp == 0
+				@logged_data.receive_xp(monster_instance.monster.experience)
+				monster_instance.calculate_loot
+				@logged_data.save
 				redirect_to battle_victory_path
 			else
 				redirect_to battle_scene_path
@@ -74,7 +79,7 @@ class GameController < ApplicationController
 	
 	private
 	def encounter?
-		Dice.d100 < @server_config.encounter_rate
+		Dice.d100 < @encounter_rate
 	end
 	
 	def proccess_attack(source, target)

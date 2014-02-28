@@ -27,4 +27,8 @@ class Npc < ActiveRecord::Base
 	def magical_modifier
 		self.level + Modifier.calculate(self.intelligence)
 	end
+	
+	def max_hp
+		(self.level-1)*4 + 30
+	end
 end
