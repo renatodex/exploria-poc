@@ -1,3 +1,7 @@
+<div class="app-logo">
+	<%= image_tag "logo-1.png" %>
+</div>
+
 <h2>Você está em: <%= @logged_data.scene.name %></h2>
 
 <section class="scene-details">
@@ -47,7 +51,7 @@
 	</ul>
 </section>
 
-<%= audio_tag("barg-forest.mp3", autoplay: true) %>
+<%#= audio_tag("barg-forest.mp3", autoplay: true) %>
 
 <script>
 	//$('body').backstretch('<%= @logged_data.scene.image %>')
