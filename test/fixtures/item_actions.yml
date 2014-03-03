@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_id: 
+  item_action_type_id: 
+  value: 1
+
+two:
+  item_id: 
+  item_action_type_id: 
+  value: 1

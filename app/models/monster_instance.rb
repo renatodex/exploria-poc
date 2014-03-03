@@ -5,6 +5,14 @@ class MonsterInstance < ActiveRecord::Base
 	has_one :npc, through: :monster
 	has_many :monster_loot, through: :monster
 	
+	def attack_modifier
+		self.npc.physical_modifier
+	end
+	
+	def class_armor
+		self.npc.fortitude
+	end
+	
 	def apply_damage(value)
 		if self.hp-value <= 0
 			self.hp = 0
@@ -30,9 +38,12 @@ class MonsterInstance < ActiveRecord::Base
 	
 	def calculate_loot		
 		self.monster_loot.each do |loot|
-			if Dice.d100f < loot.rate
+			dice = Dice.d100f
+			if dice < loot.rate
 				Rails.logger.info "[hero loot] The hero [#{self.hero.npc.name}] dropped [#{loot.item.name}]"
 				self.hero.item << loot.item
+			else
+				Rails.logger.info "[hero loot] The hero [#{self.hero.npc.name}] test for [#{loot.item.name}] has failed (#{dice}) "
 			end
 		end
 	end

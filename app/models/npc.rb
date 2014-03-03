@@ -1,5 +1,5 @@
 class Npc < ActiveRecord::Base
-	has_many :hero
+	has_one :hero
 	has_many :monster
 	has_many :metaparam, as: :model
 	has_many :battle_action
@@ -15,10 +15,6 @@ class Npc < ActiveRecord::Base
 	def reflex
 		10 + self.level + Modifier.calculate(self.agility)
 	end
-	
-	def class_armor
-		fortitude
-	end	
 	
 	def physical_modifier
 		self.level + Modifier.calculate(self.strength)

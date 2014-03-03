@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228035747) do
+ActiveRecord::Schema.define(version: 20140303034530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20140228035747) do
     t.integer  "hero_id"
     t.integer  "item_id"
     t.datetime "used_at"
-    t.boolean  "equiped"
+    t.boolean  "equiped",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -76,11 +76,22 @@ ActiveRecord::Schema.define(version: 20140228035747) do
   add_index "heros", ["npc_id"], name: "index_heros_on_npc_id", using: :btree
   add_index "heros", ["scene_id"], name: "index_heros_on_scene_id", using: :btree
 
-  create_table "item_types", force: true do |t|
+  create_table "item_action_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "item_actions", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "item_action_type_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_actions", ["item_action_type_id"], name: "index_item_actions_on_item_action_type_id", using: :btree
+  add_index "item_actions", ["item_id"], name: "index_item_actions_on_item_id", using: :btree
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -91,13 +102,9 @@ ActiveRecord::Schema.define(version: 20140228035747) do
     t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "item_type_id"
-    t.integer  "item_value"
     t.boolean  "equipable"
     t.boolean  "usable"
   end
-
-  add_index "items", ["item_type_id"], name: "index_items_on_item_type_id", using: :btree
 
   create_table "metaparams", force: true do |t|
     t.string   "name"

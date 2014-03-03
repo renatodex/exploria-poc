@@ -7,10 +7,19 @@ class GameController < ApplicationController
 		@max_xp_for_level = Experience.find_by_level(@logged_data.npc.level).value
   end
 
+	def unequip_item
+		hero_item = HeroItem.find_by_id(params[:hero_item_id])
+		hero_item.unequip_item
+		
+		redirect_to scene_path
+	end
+
 	def use_item
 		hero_item = HeroItem.find_by_id(params[:hero_item_id])
 		if hero_item.item.usable
 			hero_item.use_item
+		else
+			hero_item.equip_item
 		end
 		
 		redirect_to scene_path
@@ -83,8 +92,8 @@ class GameController < ApplicationController
 	end
 	
 	def proccess_attack(source, target)
-		attack_result = Dice.d20 + source.npc.physical_modifier
-		if attack_result > target.npc.class_armor
+		attack_result = Dice.d20 + source.attack_modifier
+		if attack_result > target.class_armor
 			attack_damage = Dice.d6 + source.npc.physical_modifier		
 			
 			target.apply_damage(attack_damage)

@@ -12,6 +12,21 @@
 	<h3><%= @logged_data.scene.description %></h3>
 </section>
 
+<section class="hero-details-left">
+	<h2>Itens equipados</h2>
+	<ul>
+		<% @logged_data.equiped_items.each do |hero_item| %>
+
+			
+			<li>
+				<a href="<%= unequip_item_path(hero_item.id)%>"><%= image_tag hero_item.item.image, :width => "50px"%>
+					<span><%= hero_item.item.name %></span>
+				</a>
+			</li>
+		<% end %>
+	</ul>
+</section>
+
 <section class="hero-details">
 	<h1>Olá <%= @logged_data.npc.name %></h1>
 	<h2>Level: <%= @logged_data.npc.level %></h2>
@@ -33,7 +48,6 @@
 			<% @logged_data.items.each do |hero_item| %>
 				<li>
 					<a href="<%= use_item_path(hero_item.id)%>"><%= image_tag hero_item.item.image, :width => "50px"%>
-						<span><%= hero_item.item.name %></span>
 					</a>
 				</li>
 			<% end %>
@@ -51,7 +65,7 @@
 	</ul>
 </section>
 
-<%#= audio_tag("barg-forest.mp3", autoplay: true) %>
+<%= audio_tag("barg-forest.mp3", autoplay: true) %>
 
 <script>
 	//$('body').backstretch('<%= @logged_data.scene.image %>')

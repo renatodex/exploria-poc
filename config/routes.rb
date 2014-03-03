@@ -7,6 +7,7 @@ Exploria::Application.routes.draw do
 	get "game/battle/gameover" => "game#battle_gameover", :as => "battle_gameover"
 	get "game/battle/victory" => "game#battle_victory", :as => "battle_victory"
 	get "game/actions/use_item/:hero_item_id" => "game#use_item", :as => "use_item"
+	get "game/actions/unequip_item/:hero_item_id" => "game#unequip_item", :as => "unequip_item"
 
 	mount HeroAPI => '/'
 

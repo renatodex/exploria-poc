@@ -8,6 +8,13 @@ class Hero < ActiveRecord::Base
 	has_many :hero_item
 	has_many :item, through: :hero_item
 	
+	def class_armor
+		self.npc.fortitude + self.defense_bonus
+	end
+	
+	def attack_modifier
+		self.npc.physical_modifier + self.attack_bonus
+	end
 	
 	def last_pending_monster
 		self.monster_instance.where("killed_at IS NULL").first
@@ -39,8 +46,58 @@ class Hero < ActiveRecord::Base
 		end
 	end
 	
+	def attack_bonus
+		ItemAction.find_by_sql(self.attack_bonus_query).inject([]) { |r, ia|
+			r << ia.value
+		}.sum		
+	end
+	
+	def defense_bonus
+		ItemAction.find_by_sql(self.defense_bonus_query).inject([]) { |r, ia|
+			r << ia.value
+		}.sum
+	end
+	
+	def attack_bonus_query
+		"SELECT
+			ia.*
+		FROM
+			hero_items as \"hi\"
+		INNER JOIN
+			items as \"i\" on hi.item_id = i.id
+		INNER JOIN
+			item_actions as \"ia\" on ia.item_id = i.id
+		INNER JOIN
+			item_action_types as \"iat\" on iat.id = ia.item_action_type_id
+		WHERE
+			hi.equiped = true AND
+			hi.used_at IS NULL AND
+			iat.name = 'attack_bonus'"
+	end
+	
+	def defense_bonus_query
+		"SELECT
+			ia.*
+		FROM
+			hero_items as \"hi\"
+		INNER JOIN
+			items as \"i\" on hi.item_id = i.id
+		INNER JOIN
+			item_actions as \"ia\" on ia.item_id = i.id
+		INNER JOIN
+			item_action_types as \"iat\" on iat.id = ia.item_action_type_id
+		WHERE
+			hi.equiped = true AND
+			hi.used_at IS NULL AND
+			iat.name = 'defense_bonus'"
+	end
+	
+	def equiped_items
+		self.hero_item.where(equiped: true, used_at: nil)
+	end
+	
 	def items
-		self.hero_item.where(used_at:nil)
+		self.hero_item.where(equiped: false, used_at: nil)
 	end
 	
 	def heal(hp)

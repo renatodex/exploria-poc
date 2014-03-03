@@ -1,4 +1,4 @@
 class Item < ActiveRecord::Base
 	has_many :metaparam, as: :model
-	belongs_to :item_type
+	has_many :item_action
 end

@@ -24,13 +24,47 @@
 		<h2>Exp: <%= @logged_data.experience %>/<%= @max_xp_for_level %></h2>
 	</div>
 	
+	<section class="hero-details-left">
+		<h2>Itens equipados</h2>
+		<ul>
+			<% @logged_data.equiped_items.each do |hero_item| %>
+				<li>
+					<%= image_tag hero_item.item.image, :width => "50px"%>
+					<span><%= hero_item.item.name %></span>
+				</li>
+			<% end %>
+		</ul>
+		
+
+		<section class="scene-actions">
+			<h2>E ai, o que você faz?</h2>
+			<ul>
+				<li>
+					<a href="<%= battle_physical_attack_path %>">
+						<h3>Atacar</h3>
+						<%= image_tag "/assets/battle-attack.png", :width => "50px" %>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<h3>Fugir</h3>
+						<%= image_tag "/assets/battle-escape.png", :width => "50px" %>
+					</a>
+				</li>
+				<% #@battle_actions.each do |ba| %>
+						<%#= ba.name %>			
+						<%#= image_tag ba.image, :width => "50px" %>
+				<% #end %>
+			</ul>
+		</section>
+	</section>
+	
 	<div class="hero-items">
 		<h2>Meus itens</h2>
 		<ul>
 			<% @logged_data.items.each do |hero_item| %>
 				<li>
 					<a href="<%= use_item_path(hero_item.id)%>"><%= image_tag hero_item.item.image, :width => "50px"%>
-						<span><%= hero_item.item.name %></span>
 					</a>
 				</li>
 			<% end %>
@@ -38,26 +72,4 @@
 	</div>
 </section>
 
-<section class="scene-actions">
-	<h2>E ai, o que você faz?</h2>
-	<ul>
-		<li>
-			<a href="<%= battle_physical_attack_path %>">
-				<h3>Atacar</h3>
-				<%= image_tag "/assets/battle-attack.png", :width => "50px" %>
-			</a>
-		</li>
-		<li>
-			<a href="">
-				<h3>Fugir</h3>
-				<%= image_tag "/assets/battle-escape.png", :width => "50px" %>
-			</a>
-		</li>
-		<% #@battle_actions.each do |ba| %>
-				<%#= ba.name %>			
-				<%#= image_tag ba.image, :width => "50px" %>
-		<% #end %>
-	</ul>
-</section>
-
-<%#= audio_tag("battle.mp3", autoplay: true) %>
+<%= audio_tag("battle.mp3", autoplay: true) %>
