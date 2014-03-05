@@ -8,6 +8,25 @@ class Hero < ActiveRecord::Base
 	has_many :hero_item
 	has_many :item, through: :hero_item
 	
+	def can_afford(value)
+		self.npc.money >= value
+	end
+	
+	def receive_money(value)
+		self.npc.money += value
+		self.npc.save
+	end
+	
+	def pay?(value)
+		if can_afford(value)
+			self.npc.money -= value 
+			self.npc.save
+			return true
+		else
+			return false
+		end
+	end
+	
 	def class_armor
 		self.npc.fortitude + self.defense_bonus
 	end
@@ -92,12 +111,20 @@ class Hero < ActiveRecord::Base
 			iat.name = 'defense_bonus'"
 	end
 	
+	def has_item?(item)
+		self.all_items.where(item_id: item.id).count > 0
+	end
+	
 	def equiped_items
 		self.hero_item.where(equiped: true, used_at: nil)
 	end
 	
 	def items
 		self.hero_item.where(equiped: false, used_at: nil)
+	end
+	
+	def all_items
+		self.hero_item.where(used_at: nil)
 	end
 	
 	def heal(hp)

@@ -5,6 +5,7 @@ class GameController < ApplicationController
 		redirect_to battle_scene_path if @logged_data.has_pending_monster?
 		@scene_actions = logged_data.scene.scene_action.collect { |sa| [sa.id, sa.name]}
 		@max_xp_for_level = Experience.find_by_level(@logged_data.npc.level).value
+		@merchants = logged_data.scene.merchant
   end
 
 	def unequip_item
@@ -55,6 +56,7 @@ class GameController < ApplicationController
 			elsif monster_instance.hp == 0
 				@logged_data.receive_xp(monster_instance.monster.experience)
 				monster_instance.calculate_loot
+				@logged_data.receive_gigs(monster_instance.npc.money)
 				@logged_data.save
 				redirect_to battle_victory_path
 			else

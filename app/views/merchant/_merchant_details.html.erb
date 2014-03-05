@@ -1,0 +1,29 @@
+<section class="merchant-details">
+	<h1><%=@merchant.npc.name%></h1>
+	<%= image_tag @merchant.npc.image%>
+	
+	<p><%= @merchant.greetings %></p>
+	
+	<div class="merchant-options">
+		<ul>
+			<li>
+				<a href="<%= merchant_buy_path %>">
+					<%= image_tag 'merchant-buy.png' %>
+					<span>Quero comprar!</span>
+				</a>
+			</li>
+			<li>
+				<a href="<%= merchant_sell_path %>">
+					<%= image_tag 'merchant-sell.png' %>
+					<span>Quero vender!</span>
+				</a>	
+			</li>
+			<li>
+				<a href="<%= scene_path %>">
+					<%= image_tag 'merchant-back.png' %>
+					<span>Sair</span>
+				</a>
+			</li>						
+		</ul>
+	</div>
+</section>

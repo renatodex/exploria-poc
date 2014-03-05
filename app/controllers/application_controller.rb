@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 	def layout_vars
 		session[:user_id] = 1
 		@logged_data = logged_data
+		@max_xp_for_level = Experience.find_by_level(@logged_data.npc.level).value
 		@encounter_rate = ServerConfig.encounter_rate('meteora')
 	end
 	

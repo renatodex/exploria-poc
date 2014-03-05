@@ -21,6 +21,9 @@
 	<%= image_tag @logged_data.npc.image, :width => "200px", :class => 'hero-avatar' %>
 	
 	<div class="hero-experience">
+		<h2>GiGs: <%= @logged_data.npc.money.to_i %></h2>
+	</div>
+	<div class="hero-experience">
 		<h2>Exp: <%= @logged_data.experience %>/<%= @max_xp_for_level %></h2>
 	</div>
 	

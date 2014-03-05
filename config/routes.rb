@@ -1,4 +1,11 @@
 Exploria::Application.routes.draw do
+  get "merchant/:merchant_id/store" => "merchant#store", :as => 'merchant'
+  get "merchant/:merchant_id/buy_items" => "merchant#buy_items", :as => 'merchant_buy'
+  get "merchant/:merchant_id/sell_items" => "merchant#sell_items", :as => 'merchant_sell'
+
+  get "merchant/:merchant_id/buy_transaction/:item_id" => "merchant#buy_transaction", :as => 'merchant_buy_transaction'
+  get "merchant/:merchant_id/sell_transaction/:hero_item_id" => "merchant#sell_transaction", :as => 'merchant_sell_transaction'
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   get "game/scene" => "game#scene", :as => "scene"
 	get "game/battle_scene" => "game#battle_scene", :as => "battle_scene"

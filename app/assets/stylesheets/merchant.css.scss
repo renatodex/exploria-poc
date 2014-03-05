@@ -1,0 +1,113 @@
+.merchant-details {
+  width: 200px;
+  border: 1px dashed #000;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  margin-top: 40px;
+  text-align:left;
+  padding:10px;
+  
+  ul {
+    list-style:none;
+    padding:0px;
+    
+    li {
+      background-color:#76DCD3;
+      width:150px;
+      overflow:auto;
+      border:1px solid #000;
+      box-sizing:border-box;
+      margin-bottom:10px;
+      
+      img {
+        float:left;
+        width:50px;
+        margin-right:10px;
+      }
+      
+      span {
+        display: block;
+        float: left;
+        width: 83px;
+        padding: 4px;
+        box-sizing: border-box;
+      }
+      
+      a {
+      }
+    }
+  }
+}
+
+.items-showcase {
+  width:500px;
+  margin:0 auto;
+  
+  ul {
+    list-style:none;
+    padding:0px;
+    
+    li {
+      width: 200px;
+      border: 1px dashed #999;
+      box-sizing: border-box;
+      padding: 12px;
+      float: left;
+      margin: 0px 16px;
+      min-height:250px;
+      background-image: image-url('wood-texture.jpg');
+      background-size: 50% 50%;
+      color:#EDEDE9;
+      text-shadow: 2px 2px #888;
+      border-radius:8px;
+      margin-bottom:20px;
+      
+      p {
+        min-height:80px;
+      }
+      
+      h2 {
+        font-size: 15px;
+        text-decoration: underline;
+        text-align: left;
+      }
+      
+      span {
+        font-size: 20px;
+        letter-spacing: -2px;
+        color: yellow;
+        text-shadow: 2px 2px #888;
+        
+        img {
+          width:25px;
+        }
+      }
+      
+      figure {
+        margin: 0px;
+        text-align:center;
+      }
+      
+      a {
+        border: 1px dashed #888;
+        border-radius: 8px;
+        box-sizing: border-box;
+        padding: 6px;
+        font-size: 19px;
+        text-decoration: none;
+        color:#EDEDE9;
+        text-shadow: 2px 2px #888;
+        
+        &:hover {
+          background-color:#222;
+        }
+      }
+    }
+  }
+}
+
+.cant-buy {
+  opacity: 0.9;
+  -webkit-filter: grayscale(100%);
+}

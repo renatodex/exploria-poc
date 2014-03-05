@@ -16,8 +16,6 @@
 	<h2>Itens equipados</h2>
 	<ul>
 		<% @logged_data.equiped_items.each do |hero_item| %>
-
-			
 			<li>
 				<a href="<%= unequip_item_path(hero_item.id)%>"><%= image_tag hero_item.item.image, :width => "50px"%>
 					<span><%= hero_item.item.name %></span>
@@ -39,6 +37,9 @@
 	<%= image_tag @logged_data.npc.image, :width => "200px", :class => 'hero-avatar' %>
 	
 	<div class="hero-experience">
+		<h2>GiGs: <%= @logged_data.npc.money.to_i %></h2>
+	</div>
+	<div class="hero-experience">
 		<h2>Exp: <%= @logged_data.experience %>/<%= @max_xp_for_level %></h2>
 	</div>
 	
@@ -54,6 +55,22 @@
 		</ul>
 	</div>
 </section>
+
+<% unless @merchants.empty?  %>
+	<section class="scene-merchants">
+		<h2>Mercadores da cena</h2>
+		<ul>
+			<% @merchants.each do |m| %>
+				<li>
+					<a href="<%= merchant_path(m.id) %>"><%= image_tag m.npc.image, :width => "150px"%>
+						<span><%= m.npc.name %></span>
+					</a>
+				</li>
+			<% end %>
+		</ul>
+	</section>
+<% end %>
+
 
 <section class="scene-actions">
 	<h2>E ai, o que você faz?</h2>

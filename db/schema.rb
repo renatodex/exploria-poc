@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303034530) do
+ActiveRecord::Schema.define(version: 20140304213614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,28 @@ ActiveRecord::Schema.define(version: 20140303034530) do
     t.boolean  "usable"
   end
 
+  create_table "merchant_items", force: true do |t|
+    t.integer  "merchant_id"
+    t.integer  "item_id"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "merchant_items", ["item_id"], name: "index_merchant_items_on_item_id", using: :btree
+  add_index "merchant_items", ["merchant_id"], name: "index_merchant_items_on_merchant_id", using: :btree
+
+  create_table "merchants", force: true do |t|
+    t.integer  "npc_id"
+    t.integer  "scene_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "greetings"
+  end
+
+  add_index "merchants", ["npc_id"], name: "index_merchants_on_npc_id", using: :btree
+  add_index "merchants", ["scene_id"], name: "index_merchants_on_scene_id", using: :btree
+
   create_table "metaparams", force: true do |t|
     t.string   "name"
     t.string   "value"
@@ -160,6 +182,7 @@ ActiveRecord::Schema.define(version: 20140303034530) do
     t.integer  "intelligence"
     t.integer  "agility"
     t.integer  "experience"
+    t.float    "money"
   end
 
   create_table "scene_actions", force: true do |t|

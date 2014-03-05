@@ -3,4 +3,5 @@ class Scene < ActiveRecord::Base
 	has_many :scene_node
 	has_many :scene_monster
 	has_many :metaparam, as: :model
+	has_many :merchant
 end

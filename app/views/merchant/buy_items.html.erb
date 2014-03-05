@@ -1,0 +1,78 @@
+<div class="app-logo">
+	<%= image_tag "logo-1.png" %>
+</div>
+
+<%= render 'merchant_details' %>
+
+<section class="hero-details">
+	<h1>Olá <%= @logged_data.npc.name %></h1>
+	<h2>Level: <%= @logged_data.npc.level %></h2>
+
+	<div class="npc-hp">
+		<div class="hp-number">HP: <%= @logged_data.hp %> / <%= @logged_data.npc.hp %></div>
+		<div class="actual-hp hp-urgency-<%= @logged_data.hp_urgency %>" style="width:<%=@logged_data.hp_percentage%>%">		</div>
+	</div>
+
+	<%= image_tag @logged_data.npc.image, :width => "200px", :class => 'hero-avatar' %>
+	
+	<div class="hero-experience">
+		<h2>GiGs: <%= @logged_data.npc.money.to_i %></h2>
+	</div>	
+	<div class="hero-experience">
+		<h2>Exp: <%= @logged_data.experience %>/<%= @max_xp_for_level %></h2>
+	</div>
+	
+	<div class="hero-items">
+		<h2>Meus itens</h2>
+		<ul>
+			<% @logged_data.items.each do |hero_item| %>
+				<li>
+					<a href="<%= use_item_path(hero_item.id)%>"><%= image_tag hero_item.item.image, :width => "50px"%>
+					</a>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</section>
+
+
+<section class="items-showcase">
+	<ul>
+		<% @items.each do |i| %>
+			<li>
+				<figure><%= image_tag i.image, :width => '50px' %></figure>
+				<h2><%= i.name %></h2>
+				<p><%= i.description %></p>
+				
+				<% if @logged_data.can_afford(i.price) %>
+					<a href="<%= merchant_buy_transaction_path(@merchant.id, i.id) %>">
+						comprar
+						<span><%= i.price %> <%= image_tag 'gigs.png' %></span>
+					</a>
+				<% else %>
+				<a href="#" class="cant-buy">
+					comprar
+					<span><%= i.price %> <%= image_tag 'gigs.png' %></span>
+				</a>				
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+</section>
+
+
+<!--<audio loop>
+  <source src="/audios/market.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>-->
+
+<%#= audio_tag("market.mp3", { autoplay: true, loop :true }) %>
+<!--<audio src="/audios/market.mp3" autoplay="true" /> -->
+
+
+<script>
+	myAudio = new Audio('/audios/market.mp3'); 
+	myAudio.play();
+
+	//$('body').backstretch('<%= @logged_data.scene.image %>')
+</script>
